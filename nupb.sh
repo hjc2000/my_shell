@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # 获取最近一条提交记录
 log=$(git log -1)
 
