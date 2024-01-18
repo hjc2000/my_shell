@@ -1,0 +1,36 @@
+# 将 Shell 脚本文件标记为文本，并使用 LF 作为行结束符
+*.sh text eol=lf
+
+# 将 C、C++ 和 C# 源文件和头文件标记为文本，并使用 LF 作为行结束符
+*.[cC] text eol=lf
+*.[hH] text eol=lf
+*.cpp text eol=lf
+*.hpp text eol=lf
+*.cxx text eol=lf
+*.hxx text eol=lf
+*.cc text eol=lf
+*.cs text eol=lf
+
+# 将 JavaScript 文件及相关前端文件标记为文本，并使用 LF 作为行结束符
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.sass text eol=lf
+*.json text eol=lf
+*.vue text eol=lf
+*.svelte text eol=lf
+
+# Blazor 相关文件
+*.razor text eol=lf
+*.wasm binary
+
+# 将静态库 (.lib, .a) 和动态库 (.dll, .so, .dylib) 文件标记为二进制
+*.lib binary
+*.a binary
+*.dll binary
+*.so binary
+*.dylib binary
