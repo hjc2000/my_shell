@@ -1,0 +1,2 @@
+nohup ./Steam++.sh &
+
