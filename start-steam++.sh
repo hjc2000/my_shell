@@ -1,2 +1,2 @@
-nohup ./Steam++.sh &
+nohup ~/Steam++/Steam++.sh &
 
