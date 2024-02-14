@@ -1,2 +1,2 @@
-nohup ~/Steam++/Steam++.sh &
+nohup ${HOME}/install/Steam++/Steam++.sh &
 
