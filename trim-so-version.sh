@@ -17,17 +17,15 @@ fi
 
 # 递归查找所有的.so文件，包括带版本号的
 find "$directory" -type f -name '*.so.*' | while read sofile; do
-    # 获取文件所在目录
-    dir=$(dirname "$sofile")
-    # 生成无版本号的链接名称
-    basefile=$(echo "$sofile" | sed -r 's/(.*\.so)(\..*)?/\1/')
-    basefilename=$(basename "$basefile")
-    # 检查无版本号的文件或链接是否已经存在
-    if [ ! -e "$dir/$basefilename" ]; then
-        # 在原文件所在目录创建一个指向最新版本的符号链接
-        ln -s "$(basename "$sofile")" "$dir/$basefilename"
-        echo "Created symlink: $dir/$basefilename -> $(basename "$sofile")"
+    # 计算新的文件名（去掉版本号）
+    newfile=$(echo "$sofile" | sed -r 's/(.*\.so)(\..*)?/\1/')
+    # 检查新文件名是否已存在
+    if [ ! -e "$newfile" ]; then
+        # 如果不存在，重命名文件
+        mv "$sofile" "$newfile"
+        echo "Renamed $sofile to $newfile"
     else
-        echo "Skipped: $dir/$basefilename already exists."
+        echo "Skipped: $newfile already exists."
     fi
 done
+
