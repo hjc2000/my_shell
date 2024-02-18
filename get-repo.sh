@@ -27,11 +27,17 @@ if [ -d "./${repo_name}/" ]; then
         git pull
     fi
 else
-    # 如果不存在，克隆仓库
-    if [ -n "${branch_name}" ]; then
-        git clone --branch "${branch_name}" "${url}"
-    else
-        git clone "${url}"
-    fi
+    # 如果不存在，尝试克隆仓库，如果失败则无限重试
+    while true; do
+        if [ -n "${branch_name}" ]; then
+            git clone --branch "${branch_name}" "${url}" && break || {
+                echo "Clone failed, retrying..."
+            }
+        else
+            git clone "${url}" && break || {
+                echo "Clone failed, retrying..."
+            }
+        fi
+    done
 fi
 
