@@ -16,15 +16,6 @@ if [ -d ./${repo_name}/ ]; then
 	git pull
 else
 	# 当前目录下没有
-	# 先看看本地仓库有没有
-	if [ -d ${repos}/${repo_name}/ ]; then
-		# 本地仓库有
-		cd ${repos}/${repo_name}/ && git pull
-		cp -r ${repos}/${repo_name}/ ${source_root_path}
-	else
-		# 本地仓库没有
-		cd ${repos} && git clone ${url} &&
-		cp -r ${repos}/${repo_name} ${source_root_path}
-	fi
+	git clone ${url}
 fi
 
