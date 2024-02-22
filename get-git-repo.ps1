@@ -1,7 +1,7 @@
 param (
 	[Parameter(Mandatory = $true)]
 	[string]$git_url,
-	[string]$BranchName
+	[string]$branch_name
 )
 $ErrorActionPreference = "Stop"
 
@@ -15,10 +15,10 @@ if (Test-Path "./$repoName/")
 
 	# 如果存在，进入该目录并更新代码
 	Set-Location $repoName
-	if (-not [string]::IsNullOrEmpty($BranchName))
+	if (-not [string]::IsNullOrEmpty($branch_name))
 	{
-		git pull origin $BranchName
-		git checkout $BranchName
+		git pull origin $branch_name
+		git checkout $branch_name
 	}
 	else
 	{
@@ -35,9 +35,9 @@ else
 	{
 		try
 		{
-			if (-not [string]::IsNullOrEmpty($BranchName))
+			if (-not [string]::IsNullOrEmpty($branch_name))
 			{
-				git clone --branch $BranchName $git_url
+				git clone --branch $branch_name $git_url
 				break
 			}
 			else
