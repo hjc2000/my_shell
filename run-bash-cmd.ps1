@@ -1,7 +1,8 @@
 param (
 	[Parameter(Mandatory = $true)]
-	[string]$configure_cmd
+	[string]$cmd
 )
 $ErrorActionPreference = "Stop"
 
-bash.exe -c "${configure_cmd} && exit"
+$cmd.Trim()
+bash.exe -c "${cmd} && exit"
