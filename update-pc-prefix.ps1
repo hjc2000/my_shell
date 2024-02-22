@@ -32,3 +32,4 @@ $new_content = $content -replace [regex]::Escape($old_prefix_path), $new_prefix_
 $new_content | Set-Content $path_to_pc_file
 
 Write-Host "Updated prefix in $path_to_pc_file to $new_prefix_path"
+Get-Content $path_to_pc_file
