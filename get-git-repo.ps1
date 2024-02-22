@@ -3,6 +3,7 @@ param (
 	[string]$git_url,
 	[string]$BranchName
 )
+$ErrorActionPreference = "Stop"
 
 $repoName = & parse-git-repo-name.ps1 -git_url $git_url
 
