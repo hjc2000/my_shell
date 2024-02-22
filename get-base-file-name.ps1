@@ -1,3 +1,4 @@
+# 可以从类似 test.tar.bz 这样的文件名中提取出基础文件名： test
 param (
 	[Parameter(Mandatory = $true)]
 	[string]$file_name
