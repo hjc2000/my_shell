@@ -53,26 +53,18 @@ switch ($extension)
 	"gz"
 	{
 		tar -vxf $file_name -C $out_dir_name
-		Write-Host "解压成功，删除压缩包 $file_name"
-		Remove-Item -Path $file_name
 	}
 	"xz"
 	{
 		tar -vJxf $file_name -C $out_dir_name
-		Write-Host "解压成功，删除压缩包 $file_name"
-		Remove-Item -Path $file_name
 	}
 	"bz2"
 	{
 		tar -vjxf $file_name -C $out_dir_name
-		Write-Host "解压成功，删除压缩包 $file_name"
-		Remove-Item -Path $file_name
 	}
 	"zip"
 	{
 		Expand-Archive -Path $file_name -DestinationPath $out_dir_name -Force
-		Write-Host "解压成功，删除压缩包 $file_name"
-		Remove-Item -Path $file_name
 	}
 	default
 	{
