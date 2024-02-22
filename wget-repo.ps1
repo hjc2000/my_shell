@@ -3,7 +3,10 @@ param (
 	[string]$workspace_dir,
 
 	[Parameter(Mandatory = $true)]
-	[string]$repo_url
+	[string]$repo_url,
+
+	[Parameter(Mandatory = $true)]
+	[string]$out_dir_name
 )
 
 $ErrorActionPreference = "Stop"
@@ -25,8 +28,6 @@ if (-not (Test-Path -Path $workspace_dir))
 
 # 切换到工作区
 Set-Location $workspace_dir
-
-$out_dir_name = get-base-file-name.ps1 -file_name $file_name
 
 # 检查解压结果目录是否已存在，如果已经存在，就不要再次解压了。
 if (Test-Path -Path $out_dir_name)
@@ -71,4 +72,3 @@ switch ($extension)
 		exit 1
 	}
 }
-
