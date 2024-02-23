@@ -18,4 +18,4 @@ $env:CONTITLE = "MinGW UCRT x64"
 $cmd = $cmd.Trim()
 $cmd = $cmd.Replace("`t", " ")
 $cmd = $cmd.Replace("`r`n", "`n")
-"|| $cmd" | bash -himBHs
+"false || $cmd" | bash -himBHs
