@@ -1,0 +1,43 @@
+符号链接 /home/hjc/install/Steam++/Steam++ 已存在
+文件具有执行权限。
+证书 'SteamTools' 存在。
+info: KestrelServerOptEx[0]
+      Listened https://0.0.0.0:443, HTTPS reverse proxy service startup completed.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: https://0.0.0.0:443
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: /home/hjc/.local/share/Steam++/Plugins/Accelerator/Yarp
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 GET https://github.com/hjc2000/my_shell.git/info/refs?service=git-upload-pack - - -
+info: Yarp.ReverseProxy.Forwarder.HttpForwarder[9]
+      Proxying to https://github.com/hjc2000/my_shell.git/info/refs?service=git-upload-pack HTTP/2 RequestVersionOrLower no-streaming
+info: Yarp.ReverseProxy.Forwarder.HttpForwarder[56]
+      Received HTTP/1.1 response 200.
+info: BD.WTTS.Services.Implementation.RequestLoggingMiddleware[0]
+      GET https://github.com/hjc2000/my_shell.git/info/refs responded 200 in 1054.582 ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 GET https://github.com/hjc2000/my_shell.git/info/refs?service=git-upload-pack - 200 - application/x-git-upload-pack-advertisement 1059.3879ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST https://github.com/hjc2000/my_shell.git/git-upload-pack - application/x-git-upload-pack-request 155
+info: Yarp.ReverseProxy.Forwarder.HttpForwarder[9]
+      Proxying to https://github.com/hjc2000/my_shell.git/git-upload-pack HTTP/2 RequestVersionOrLower no-streaming
+info: Yarp.ReverseProxy.Forwarder.HttpForwarder[56]
+      Received HTTP/1.1 response 200.
+info: BD.WTTS.Services.Implementation.RequestLoggingMiddleware[0]
+      POST https://github.com/hjc2000/my_shell.git/git-upload-pack responded 200 in 443.2832 ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST https://github.com/hjc2000/my_shell.git/git-upload-pack - 200 - application/x-git-upload-pack-result 443.4552ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/2 POST https://github.com/hjc2000/my_shell.git/git-upload-pack - application/x-git-upload-pack-request 958
+info: Yarp.ReverseProxy.Forwarder.HttpForwarder[9]
+      Proxying to https://github.com/hjc2000/my_shell.git/git-upload-pack HTTP/2 RequestVersionOrLower no-streaming
+info: Yarp.ReverseProxy.Forwarder.HttpForwarder[56]
+      Received HTTP/1.1 response 200.
+info: BD.WTTS.Services.Implementation.RequestLoggingMiddleware[0]
+      POST https://github.com/hjc2000/my_shell.git/git-upload-pack responded 200 in 465.0275 ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/2 POST https://github.com/hjc2000/my_shell.git/git-upload-pack - 200 - application/x-git-upload-pack-result 465.1646ms
