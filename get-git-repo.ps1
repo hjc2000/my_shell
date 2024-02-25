@@ -45,5 +45,3 @@ else
 		Start-Sleep -Seconds 5
 	}
 }
-
-Set-Location "./$repoName"
