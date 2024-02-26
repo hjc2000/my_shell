@@ -13,14 +13,10 @@ New-Item -Path $dst_path/bin/ -ItemType Directory -Force
 New-Item -Path $dst_path/lib/ -ItemType Directory -Force
 New-Item -Path $dst_path/include/ -ItemType Directory -Force
 
-Copy-Item -Path $src_path/bin/* `
-	-Destination $dst_path/bin/ `
-	-Force -Recurse -Container
-
-Copy-Item -Path $src_path/lib/* `
-	-Destination $dst_path/lib/ `
-	-Force -Recurse -Container
-
-Copy-Item -Path $src_path/include/* `
-	-Destination $dst_path/include/ `
-	-Force -Recurse -Container
+$cmd = @"
+set -e
+cp -a -r $src_path/bin/* $dst_path/bin/
+cp -a -r $src_path/lib/* $dst_path/lib/
+cp -a -r $src_path/include/* $dst_path/include/
+"@
+$cmd | bash -norc
