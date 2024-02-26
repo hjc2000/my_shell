@@ -15,12 +15,12 @@ New-Item -Path $dst_path/include/ -ItemType Directory -Force
 
 Copy-Item -Path $src_path/bin/* `
 	-Destination $dst_path/bin/ `
-	-Force -Recurse
+	-Force -Recurse -Container
 
 Copy-Item -Path $src_path/lib/* `
 	-Destination $dst_path/lib/ `
-	-Force -Recurse
+	-Force -Recurse -Container
 
 Copy-Item -Path $src_path/include/* `
 	-Destination $dst_path/include/ `
-	-Force -Recurse
+	-Force -Recurse -Container
