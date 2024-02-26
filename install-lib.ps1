@@ -13,10 +13,9 @@ New-Item -Path $dst_path/bin/ -ItemType Directory -Force
 New-Item -Path $dst_path/lib/ -ItemType Directory -Force
 New-Item -Path $dst_path/include/ -ItemType Directory -Force
 
-$cmd = @"
+run-bash-cmd.ps1 @"
 set -e
 cp -a -r $src_path/bin/* $dst_path/bin/
 cp -a -r $src_path/lib/* $dst_path/lib/
 cp -a -r $src_path/include/* $dst_path/include/
 "@
-$cmd | bash -norc
