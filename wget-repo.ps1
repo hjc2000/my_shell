@@ -8,7 +8,6 @@ param (
 	[Parameter(Mandatory = $true)]
 	[string]$out_dir_name
 )
-
 $ErrorActionPreference = "Stop"
 
 # 从 url 中获取文件名。例如从
