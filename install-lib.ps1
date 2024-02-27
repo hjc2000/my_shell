@@ -3,7 +3,9 @@ param (
 	[string]$src_path,
 
 	[Parameter(Mandatory = $true)]
-	[string]$dst_path
+	[string]$dst_path,
+
+	[switch]$sudo
 )
 $ErrorActionPreference = "Stop"
 
@@ -34,20 +36,27 @@ if ($IsWindows)
 }
 else
 {
+	# linux 平台
+	$sudo_str = ""
+	if ($sudo)
+	{
+		$sudo_str = "sudo"
+	}
+
 	run-bash-cmd.ps1 @"
 set -e
 
 # 复制并保留符号链接
-cp -a -r $src_path/bin/* $dst_path/bin/
+$sudo_str cp -a -r $src_path/bin/* $dst_path/bin/
 
 if [ -d "$src_path/lib" ]; then
-  cp -a -r "$src_path/lib/"* "$dst_path/lib/"
+	$sudo_str cp -a -r "$src_path/lib/"* "$dst_path/lib/"
 elif [ -d "$src_path/lib64" ]; then
-  cp -a -r "$src_path/lib64/"* "$dst_path/lib/"
+	$sudo_str cp -a -r "$src_path/lib64/"* "$dst_path/lib/"
 elif [ -d "$src_path/lib32" ]; then
-  cp -a -r "$src_path/lib32/"* "$dst_path/lib/"
+	$sudo_str cp -a -r "$src_path/lib32/"* "$dst_path/lib/"
 fi
 
-cp -a -r $src_path/include/* $dst_path/include/
+$sudo_str cp -a -r $src_path/include/* $dst_path/include/
 "@
 }
