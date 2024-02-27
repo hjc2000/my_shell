@@ -9,7 +9,7 @@ $cmd = $cmd.Trim()
 $cmd = $cmd.Replace("`t", " ")
 $cmd = $cmd.Replace("`r`n", "`n")
 
-if ($(is-msys.ps1))
+if ($IsWindows)
 {
 	# 如果是 msys 环境
 	$env:MSYSTEM = "UCRT64"

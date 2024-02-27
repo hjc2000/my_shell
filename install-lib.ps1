@@ -13,7 +13,7 @@ New-Item -Path $dst_path/bin/ -ItemType Directory -Force
 New-Item -Path $dst_path/lib/ -ItemType Directory -Force
 New-Item -Path $dst_path/include/ -ItemType Directory -Force
 
-if ($(is-msys.ps1))
+if ($IsWindows)
 {
 	Copy-Item -Path "$src_path/bin/*" -Destination "$dst_path/bin/" -Force -Recurse
 	if (Test-Path "$src_path/lib/*")
