@@ -27,5 +27,9 @@ if ($IsWindows)
 }
 else
 {
-	$cmd | bash -norc
+	@"
+	set -e
+	export PATH=$env:PATH
+	$cmd
+"@ | bash -norc
 }
