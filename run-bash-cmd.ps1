@@ -29,7 +29,6 @@ else
 {
 	@"
 	set -e
-	export PATH=$env:PATH
 	$cmd
 "@ | bash -norc
 }
