@@ -16,11 +16,11 @@ for item in $(ls -A); do
         if [ -d "${target_dir}/${item}" ]; then
             # 如果是目录，则递归删除
             echo "正在删除目录: ${target_dir}/${item}"
-            rm -r "${target_dir}/${item}"
+            rm -rf "${target_dir}/${item}"
         else
             # 如果是文件，则直接删除
             echo "正在删除文件: ${target_dir}/${item}"
-            rm "${target_dir}/${item}"
+            rm -rf "${target_dir}/${item}"
         fi
     else
         echo "在目标路径下未找到 ${item}，跳过。"
