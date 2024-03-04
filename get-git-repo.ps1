@@ -11,7 +11,7 @@ if (Test-Path "./$repoName/")
 {
 	$current_path = Get-Location
 	Set-Location $repoName
-	if (-not [string]::IsNullOrEmpty($branch_name))
+	if ($branch_name)
 	{
 		git pull origin $branch_name
 		git checkout $branch_name
