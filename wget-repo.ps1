@@ -38,7 +38,10 @@ if (Test-Path -Path $out_dir_name)
 if (-not (Test-Path -Path $file_name))
 {
 	# Invoke-WebRequest -Uri $repo_url -OutFile $file_name
+	run-bash-cmd.ps1 @"
+	cd $workspace_dir
 	wget $repo_url -O $file_name
+"@
 }
 
 # 创建输出目录
