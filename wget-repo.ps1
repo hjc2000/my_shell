@@ -37,6 +37,9 @@ if (Test-Path -Path $out_dir_name)
 # 解压后的目录不存在，检查压缩包是否存在
 if (-not (Test-Path -Path $file_name))
 {
+	# 忽略SSL/TLS证书验证
+	[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }
+	
 	Invoke-WebRequest -Uri $repo_url -OutFile $file_name
 }
 
