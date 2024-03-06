@@ -10,10 +10,8 @@ param (
 )
 $ErrorActionPreference = "Stop"
 
-# 从 url 中获取文件名。例如从
-# https://boostorg.jfrog.io/artifactory/main/release/1.84.0/source/boost_1_84_0_rc1.tar.gz
-# 中提取出 boost_1_84_0_rc1.tar.gz
-$file_name = [System.IO.Path]::GetFileName($repo_url)
+# 从 url 中获取文件名
+$file_name = ([System.Uri]$repo_url).Segments[-1]
 
 # 获取扩展名。例如对于 boost_1_84_0_rc1.tar.gz 将会得到 gz
 $extension = [System.IO.Path]::GetExtension($file_name).TrimStart('.')
