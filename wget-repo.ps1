@@ -12,6 +12,7 @@ $ErrorActionPreference = "Stop"
 
 # 从 url 中获取文件名
 $file_name = ([System.Uri]$repo_url).Segments[-1]
+Write-Host $file_name
 
 # 获取扩展名。例如对于 boost_1_84_0_rc1.tar.gz 将会得到 gz
 $extension = [System.IO.Path]::GetExtension($file_name).TrimStart('.')
@@ -37,7 +38,9 @@ if (Test-Path -Path $out_dir_name)
 if (-not (Test-Path -Path $file_name))
 {
 	# 压缩包也不存在，先下载
-	Invoke-WebRequest -Uri $repo_url -OutFile $file_name
+	run-bash-cmd.ps1 @"
+	wget $repo_url -O $file_name
+"@
 }
 
 # 创建输出目录
