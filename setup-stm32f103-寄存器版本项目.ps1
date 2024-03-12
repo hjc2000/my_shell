@@ -5,9 +5,9 @@ param (
 $ErrorActionPreference = "Stop"
 
 $project_full_path = "$(Get-Location)/$project_name"
-New-Item -Path $project_full_path
-New-Item -Path $project_full_path/Drivers
-New-Item -Path $project_full_path/Middlewares
-New-Item -Path $project_full_path/Output
-New-Item -Path $project_full_path/Projects
-New-Item -Path $project_full_path/User
+New-Item -ItemType Directory -Force -Path "$project_full_path" 				
+New-Item -ItemType Directory -Force -Path "$project_full_path/Drivers"
+New-Item -ItemType Directory -Force -Path "$project_full_path/Middlewares"
+New-Item -ItemType Directory -Force -Path "$project_full_path/Output"
+New-Item -ItemType Directory -Force -Path "$project_full_path/Projects"
+New-Item -ItemType Directory -Force -Path "$project_full_path/User"
