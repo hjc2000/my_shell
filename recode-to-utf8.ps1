@@ -13,8 +13,8 @@ if (-not $LASTEXITCODE)
 	return
 }
 
-Write-Host "转换失败，猜测原始文件为 GB2312，再次尝试转换"
-iconv -f GB2312 -t UTF-8 $input_file_path | Out-File $output_file_path
+Write-Host "转换失败，猜测原始文件为 GB18030，再次尝试转换"
+iconv -f GB18030 -t UTF-8 $input_file_path | Out-File $output_file_path
 if (-not $LASTEXITCODE)
 {
 	Write-Host "转换成功"
