@@ -16,5 +16,5 @@ foreach ($file in $file_list)
 		continue
 	}
 	
-	Write-Error "$($file.FullName) 转换失败"
+	Write-Warning "$($file.FullName) 转换失败"
 }
