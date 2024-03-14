@@ -10,7 +10,7 @@ foreach ($file in $file_list)
 	$conv_result = iconv -f $(uchardet $file.FullName) -t UTF-8 $file.FullName
 	if (-not $LASTEXITCODE)
 	{
-		Write-Host "转换成功"
+		Write-Host "$($file.FullName) 转换成功"
 		$conv_result | Out-File $file.FullName
 		continue
 	}
@@ -19,10 +19,10 @@ foreach ($file in $file_list)
 	$conv_result = iconv -f GB18030 -t UTF-8 $file.FullName
 	if (-not $LASTEXITCODE)
 	{
-		Write-Host "转换成功"
+		Write-Host "$($file.FullName) 转换成功"
 		$conv_result | Out-File $file.FullName
 		continue
 	}
 	
-	Write-Host "转换失败"
+	Write-Host "$($file.FullName) 转换失败"
 }
