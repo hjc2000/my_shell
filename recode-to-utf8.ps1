@@ -1,24 +1,28 @@
 param (
 	[Parameter(Mandatory = $true)]
-	[string]$input_file_path,
-	[Parameter(Mandatory = $true)]
-	[string]$output_file_path
+	[string]$input_file_path
 )
 $ErrorActionPreference = "Stop"
 
-iconv -f $(uchardet $input_file_path) -t UTF-8 $input_file_path | Out-File $output_file_path
-if (-not $LASTEXITCODE)
+$file_list = Get-ChildItem -Path $input_file_path
+foreach ($file in $file_list)
 {
-	Write-Host "转换成功"
-	return
+	$conv_result = iconv -f $(uchardet $file.FullName) -t UTF-8 $file.FullName
+	if (-not $LASTEXITCODE)
+	{
+		Write-Host "转换成功"
+		$conv_result | Out-File $file.FullName
+		continue
+	}
+	
+	Write-Host "转换失败，猜测原始文件为 GB18030，再次尝试转换"
+	$conv_result = iconv -f GB18030 -t UTF-8 $file.FullName
+	if (-not $LASTEXITCODE)
+	{
+		Write-Host "转换成功"
+		$conv_result | Out-File $file.FullName
+		continue
+	}
+	
+	Write-Host "转换失败"
 }
-
-Write-Host "转换失败，猜测原始文件为 GB18030，再次尝试转换"
-iconv -f GB18030 -t UTF-8 $input_file_path | Out-File $output_file_path
-if (-not $LASTEXITCODE)
-{
-	Write-Host "转换成功"
-	return
-}
-
-Write-Host "转换失败"
