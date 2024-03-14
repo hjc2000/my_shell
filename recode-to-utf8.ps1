@@ -1,10 +1,11 @@
 param (
 	[Parameter(Mandatory = $true)]
-	[string]$input_file_path
+	[string]$input_file_path,
+	[switch]$Recurse
 )
 $ErrorActionPreference = "Stop"
 
-$file_list = Get-ChildItem -Path $input_file_path
+$file_list = Get-ChildItem -Path $input_file_path -Recurse:$Recurse -File
 foreach ($file in $file_list)
 {
 	$conv_result = iconv -f $(uchardet $file.FullName) -t UTF-8 $file.FullName
