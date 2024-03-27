@@ -13,12 +13,12 @@ if (Test-Path "./$repoName/")
 	Set-Location $repoName
 	if ($branch_name)
 	{
-		git pull origin $branch_name
-		git checkout $branch_name
+		git pull origin $branch_name --recurse-submodules
+		git checkout $branch_name --recurse-submodules
 	}
 	else
 	{
-		git pull
+		git pull --recurse-submodules
 	}
 	
 	Set-Location $current_path
@@ -29,11 +29,11 @@ else
 	{
 		if (-not [string]::IsNullOrEmpty($branch_name))
 		{
-			git clone --branch $branch_name $git_url
+			git clone --branch $branch_name $git_url --recurse-submodules
 		}
 		else
 		{
-			git clone $git_url
+			git clone $git_url --recurse-submodules
 		}
 
 		if ($?)
