@@ -5,9 +5,7 @@ param (
 )
 $ErrorActionPreference = "Stop"
 
-git config --global submodule.recurse true
 $repoName = & parse-git-repo-name.ps1 -git_url $git_url
-
 Push-Location
 try
 {
@@ -17,13 +15,16 @@ try
 		Set-Location $repoName
 		if (-not [string]::IsNullOrEmpty($branch_name))
 		{
-			git pull origin $branch_name
 			git checkout $branch_name
 		}
-		else
+
+		if ($LASTEXITCODE)
 		{
-			git pull
+			throw "没有该分支"
 		}
+
+		git submodule update --init --recursive
+		git pull --recurse-submodules
 	}
 	else
 	{
@@ -32,11 +33,11 @@ try
 		{
 			if (-not [string]::IsNullOrEmpty($branch_name))
 			{
-				git clone --branch $branch_name $git_url
+				git clone $git_url --recurse-submodules --branch $branch_name
 			}
 			else
 			{
-				git clone $git_url
+				git clone $git_url --recurse-submodules
 			}
 	
 			if ($?)
@@ -52,6 +53,7 @@ try
 }
 catch
 {
+	throw
 }
 finally
 {
