@@ -5,6 +5,7 @@ param (
 )
 $ErrorActionPreference = "Stop"
 
+git config --global submodule.recurse true
 $repoName = & parse-git-repo-name.ps1 -git_url $git_url
 
 if (Test-Path "./$repoName/")
@@ -13,12 +14,12 @@ if (Test-Path "./$repoName/")
 	Set-Location $repoName
 	if ($branch_name)
 	{
-		git pull origin $branch_name --recurse-submodules
-		git checkout $branch_name --recurse-submodules
+		git pull origin $branch_name
+		git checkout $branch_name
 	}
 	else
 	{
-		git pull --recurse-submodules
+		git pull
 	}
 	
 	Set-Location $current_path
@@ -29,11 +30,11 @@ else
 	{
 		if (-not [string]::IsNullOrEmpty($branch_name))
 		{
-			git clone --branch $branch_name $git_url --recurse-submodules
+			git clone --branch $branch_name $git_url
 		}
 		else
 		{
-			git clone $git_url --recurse-submodules
+			git clone $git_url
 		}
 
 		if ($?)
