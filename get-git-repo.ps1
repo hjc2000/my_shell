@@ -9,28 +9,33 @@ $repoName = & parse-git-repo-name.ps1 -git_url $git_url
 Push-Location
 try
 {
-	if (Test-Path "./$repoName/")
+	while (true)
 	{
-		# 已经存在该仓库的文件夹
-		Set-Location $repoName
-		if (-not [string]::IsNullOrEmpty($branch_name))
+		if (Test-Path "./$repoName/")
 		{
-			git checkout $branch_name
+			# 已经存在该仓库的文件夹
+			Set-Location $repoName
+			if (-not [string]::IsNullOrEmpty($branch_name))
+			{
+				git checkout $branch_name
+			}
+	
+			if ($LASTEXITCODE)
+			{
+				throw "没有该分支"
+			}
+	
+			git submodule update --init --recursive
+			git pull --recurse-submodules
+			if (-not $LASTEXITCODE)
+			{
+				# 如果上一个命令成功，则退出循环
+				return 
+			} 
 		}
-
-		if ($LASTEXITCODE)
+		else
 		{
-			throw "没有该分支"
-		}
-
-		git submodule update --init --recursive
-		git pull --recurse-submodules
-	}
-	else
-	{
-		# 不存在该仓库的文件夹，需要克隆
-		while ($true)
-		{
+			# 不存在该仓库的文件夹，需要克隆
 			if (-not [string]::IsNullOrEmpty($branch_name))
 			{
 				git clone $git_url --recurse-submodules --branch $branch_name
@@ -40,15 +45,15 @@ try
 				git clone $git_url --recurse-submodules
 			}
 	
-			if ($?)
+			if (-not $LASTEXITCODE)
 			{
 				# 如果上一个命令成功，则退出循环
-				break 
+				return 
 			} 
-			
-			Write-Host "Clone failed, retrying..."
-			Start-Sleep -Seconds 5
 		}
+	
+		Write-Host "克隆或拉取失败。将在 5 秒后重试。"
+		Start-Sleep -Seconds 5
 	}
 }
 catch
