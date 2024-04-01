@@ -38,11 +38,11 @@ try
 			# 不存在该仓库的文件夹，需要克隆
 			if (-not [string]::IsNullOrEmpty($branch_name))
 			{
-				git clone $git_url --recurse-submodules --branch $branch_name
+				git clone $git_url --recurse-submodules --branch $branch_name --depth 1
 			}
 			else
 			{
-				git clone $git_url --recurse-submodules
+				git clone $git_url --recurse-submodules --depth 1
 			}
 	
 			if (-not $LASTEXITCODE)
