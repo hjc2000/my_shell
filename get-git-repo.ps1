@@ -9,13 +9,13 @@ $repoName = & parse-git-repo-name.ps1 -git_url $git_url
 Push-Location
 try
 {
-	while (true)
+	while ($true)
 	{
 		if (Test-Path "./$repoName/")
 		{
 			# 已经存在该仓库的文件夹
 			Set-Location $repoName
-			if (-not [string]::IsNullOrEmpty($branch_name))
+			if ($branch_name)
 			{
 				git checkout $branch_name
 			}
@@ -36,7 +36,7 @@ try
 		else
 		{
 			# 不存在该仓库的文件夹，需要克隆
-			if (-not [string]::IsNullOrEmpty($branch_name))
+			if ($branch_name)
 			{
 				git clone $git_url --recurse-submodules --branch $branch_name --depth 1
 			}
