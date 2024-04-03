@@ -1,7 +1,8 @@
 param (
 	[Parameter(Mandatory = $true)]
 	[string]$git_url,
-	[string]$branch_name
+	[string]$branch_name,
+	[switch]$full_clone
 )
 $ErrorActionPreference = "Stop"
 
@@ -29,7 +30,7 @@ while ($true)
 			if (-not $LASTEXITCODE)
 			{
 				# 如果上一个命令成功，则退出循环
-				return 
+				return 0
 			} 
 
 		}
@@ -41,19 +42,21 @@ while ($true)
 	else
 	{
 		# 不存在该仓库的文件夹，需要克隆
+		$clone_cmd = "git clone $git_url --recurse-submodules"
 		if ($branch_name)
 		{
-			git clone $git_url --recurse-submodules --branch $branch_name --depth 1
-		}
-		else
-		{
-			git clone $git_url --recurse-submodules --depth 1
+			$clone_cmd = "$clone_cmd --branch $branch_name"
 		}
 
+		if (-not $full_clone)
+		{
+			$clone_cmd = "$clone_cmd --depth 1"
+		}
+
+		Invoke-Expression $clone_cmd
 		if (-not $LASTEXITCODE)
 		{
-			# 如果上一个命令成功，则退出循环
-			return 
+			return 0
 		} 
 	}
 
