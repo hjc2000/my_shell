@@ -12,7 +12,7 @@ while ($true)
 		throw "初始化子模块失败。"
 	}
 
-	git submodule update --remote --recursive $submoudle_name
+	git submodule update --recursive $submoudle_name
 	if (-not $LASTEXITCODE)
 	{
 		return 0
