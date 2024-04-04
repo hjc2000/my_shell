@@ -1,30 +1,20 @@
 param (
 	[Parameter(Mandatory = $true)]
-	$repo_path,
-	[Parameter(Mandatory = $true)]
 	[string]$submoudle_name
 )
 $ErrorActionPreference = "Stop"
 
-Push-Location $repo_path
-try
+while ($true)
 {
-	while ($true)
+	git submodule init $submoudle_name
+	if ($LASTEXITCODE)
 	{
-		git submodule init $submoudle_name
-		if ($LASTEXITCODE)
-		{
-			continue
-		}
-	
-		git submodule update --remote --recursive $submoudle_name
-		if (-not $LASTEXITCODE)
-		{
-			return 0
-		}
+		throw "初始化子模块失败。检查名称是否正确。"
 	}
-}
-finally
-{
-	Pop-Location
+
+	git submodule update --remote --recursive $submoudle_name
+	if (-not $LASTEXITCODE)
+	{
+		return 0
+	}
 }
