@@ -27,7 +27,15 @@ try
 	}
 
 	# 最后再执行一遍这个，确保所有子模块都获取到
-	git pull --recurse-submodules
+	while ($true)
+	{
+		git submodule update --init --recursive
+		if (-not $LASTEXITCODE)
+		{
+			break
+		}
+	}
+
 	return 0
 }
 finally

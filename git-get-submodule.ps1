@@ -6,10 +6,10 @@ $ErrorActionPreference = "Stop"
 
 while ($true)
 {
-	git submodule init $submoudle_name
+	git submodule init
 	if ($LASTEXITCODE)
 	{
-		throw "初始化子模块失败。检查名称是否正确。"
+		throw "初始化子模块失败。"
 	}
 
 	git submodule update --remote --recursive $submoudle_name
