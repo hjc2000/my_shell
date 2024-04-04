@@ -20,13 +20,6 @@ try
 	}
 
 	git pull
-	$submodules = git-get-submodule-names.ps1 -DirectoryPath ./
-	foreach ($submodule in $submodules)
-	{
-		git-get-submodule.ps1 -submoudle_name $submodule
-	}
-
-	# 最后再执行一遍这个，确保所有子模块都获取到
 	while ($true)
 	{
 		git submodule update --init --recursive
