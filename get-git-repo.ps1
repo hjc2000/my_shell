@@ -12,10 +12,13 @@ while ($true)
 {
 	if (Test-Path "./$repoName/")
 	{
+		# 已经存在该仓库的文件夹
 		try
 		{
-			# 已经存在该仓库的文件夹
 			Push-Location $repoName
+
+			# 如果 $branch_name 参数制定了分支名，但是与当前分支名不符，要求重新克隆
+			# 本脚本不具备签出到分支的能力。因为带有子模块时，签出到分支非常麻烦。
 			[string]$current_branch = git branch
 			if (-not $current_branch.Contains($branch_name))
 			{
@@ -38,28 +41,24 @@ while ($true)
 	else
 	{
 		# 不存在该仓库的文件夹，需要克隆
-		$clone_cmd = "git clone $git_url"
-		if ($recurse_submodules)
+		if ($all_depth)
 		{
-			$clone_cmd = "$clone_cmd --recurse-submodules"
+			$depth = ""
 		}
-	
-		if ($branch_name)
+		else
 		{
-			$clone_cmd = "$clone_cmd --branch $branch_name"
+			$depth = "1"
 		}
-	
-		if (-not $all_depth)
-		{
-			$clone_cmd = "$clone_cmd --depth 1"
-		}
-		
-		Invoke-Expression $clone_cmd
+
+		git-clone.ps1 -git_url $git_url `
+			-branch_name $branch_name `
+			-recurse_submodules:$recurse_submodules `
+			-depth $depth
+
 		if (-not $LASTEXITCODE)
 		{
-			# 克隆成功
 			return 0
-		} 
+		}
 	}
 
 	Write-Host "克隆或拉取失败。将在 5 秒后重试。"
