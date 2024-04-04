@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 while ($true)
 {
 	git submodule init $submoudle_name
-	if ($LASTEXITCODE)	
+	if ($LASTEXITCODE)
 	{
 		continue
 	}
