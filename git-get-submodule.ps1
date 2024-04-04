@@ -1,20 +1,30 @@
 param (
 	[Parameter(Mandatory = $true)]
+	$repo_path,
+	[Parameter(Mandatory = $true)]
 	[string]$submoudle_name
 )
 $ErrorActionPreference = "Stop"
 
-while ($true)
+Push-Location $repo_path
+try
 {
-	git submodule init $submoudle_name
-	if ($LASTEXITCODE)
+	while ($true)
 	{
-		continue
+		git submodule init $submoudle_name
+		if ($LASTEXITCODE)
+		{
+			continue
+		}
+	
+		git submodule update --remote --recursive $submoudle_name
+		if (-not $LASTEXITCODE)
+		{
+			return 0
+		}
 	}
-
-	git submodule update --remote --recursive $submoudle_name
-	if (-not $LASTEXITCODE)
-	{
-		return 0
-	}
+}
+finally
+{
+	Pop-Location
 }
