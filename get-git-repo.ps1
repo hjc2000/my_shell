@@ -2,7 +2,7 @@ param (
 	[Parameter(Mandatory = $true)]
 	[string]$git_url,
 	[string]$branch_name,
-	[switch]$full_clone
+	[switch]$all_depth
 )
 $ErrorActionPreference = "Stop"
 
@@ -48,7 +48,7 @@ while ($true)
 			$clone_cmd = "$clone_cmd --branch $branch_name"
 		}
 
-		if (-not $full_clone)
+		if (-not $all_depth)
 		{
 			$clone_cmd = "$clone_cmd --depth 1"
 		}
