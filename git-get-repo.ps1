@@ -5,26 +5,10 @@ param (
 )
 $ErrorActionPreference = "Stop"
 
-$repoName = git-parse-repo-name.ps1 -git_url $git_url
-if (-not (Test-Path "./$repoName"))
-{
-	# 不存在该仓库的文件夹，需要克隆
-	while ($true)
-	{
-		git-clone.ps1 -git_url $git_url -branch_name $branch_name
-		if (-not $LASTEXITCODE)
-		{
-			break
-		}
-
-		Write-Host "克隆失败。将在 5 秒后重试。"
-		Start-Sleep -Seconds 5	
-	}
-}
-
-# 已经存在该仓库的文件夹
+git-clone.ps1 -git_url $git_url -branch_name $branch_name
 try
 {
+	$repoName = git-parse-repo-name.ps1 -git_url $git_url
 	Push-Location $repoName
 
 	# 如果 $branch_name 参数制定了分支名，但是与当前分支名不符，要求重新克隆
@@ -42,6 +26,8 @@ try
 		git-get-submodule.ps1 -submoudle_name $submodule
 	}
 
+	# 最后再执行一遍这个，确保所有子模块都获取到
+	git pull --recurse-submodules
 	return 0
 }
 finally
