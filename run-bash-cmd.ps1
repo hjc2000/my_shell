@@ -33,3 +33,5 @@ else
 	$cmd
 "@ | bash -norc
 }
+
+return $LASTEXITCODE
