@@ -12,7 +12,9 @@ if (-not (Test-Path $Path))
 
 $Path = $Path.Replace('\', '/')
 $Path = $Path.Replace("//", '/')
-$last_path = $Path.Split('/', ([System.StringSplitOptions]::TrimEntries -bor [System.StringSplitOptions]::RemoveEmptyEntries))[-1]
+$split_options = [System.StringSplitOptions]::TrimEntries
+$split_options = $split_options -bor [System.StringSplitOptions]::RemoveEmptyEntries
+$last_path = $Path.Split('/', $split_options)[-1]
 
 if ($IsWindows)
 {
