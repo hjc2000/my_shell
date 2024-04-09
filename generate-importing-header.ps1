@@ -1,4 +1,5 @@
 param (
+	# 指定生成的头文件的路径
 	[string]$OutFilePath = "include_all.h",
 	[switch]$DoNotHoldTree,
 	# 开启此开关，结果仅会打印到控制台，不会创建文件并写入。此时 $OutFilePath 参数会被忽略。
