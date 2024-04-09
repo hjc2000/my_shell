@@ -1,7 +1,8 @@
 param (
 	[string]$FileName = "include_all.h",
 	[switch]$DoNotHoldTree,
-	[switch]$WriteHostOnly # 开启此开关，结果仅会打印到控制台，不会创建文件并写入
+	# 开启此开关，结果仅会打印到控制台，不会创建文件并写入。此时 $FileName 参数会被忽略。
+	[switch]$WriteHostOnly
 )
 $ErrorActionPreference = "Stop"
 
