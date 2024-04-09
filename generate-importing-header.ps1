@@ -1,10 +1,11 @@
 param (
 	[string]$FileName = "include_all.h",
-	[switch]$DoNotHoldTree
+	[switch]$DoNotHoldTree,
+	[switch]$WriteHostOnly # 开启此开关，结果仅会打印到控制台，不会创建文件并写入
 )
 $ErrorActionPreference = "Stop"
 
-if (Test-Path "./$FileName")
+if ((Test-Path "./$FileName") -and (-not $WriteHostOnly))
 {
 	throw "当前目录下已经存在 $FileName"
 }
@@ -30,7 +31,10 @@ foreach ($header_file in $header_files)
 	}
 }
 
-New-Item -Path "./$FileName" -ItemType File -Force
 $importing_header_file_content = $importing_header_file_content.Trim()
 Write-Host $importing_header_file_content
-$importing_header_file_content | Set-Content -Path "./$FileName"
+if (-not $WriteHostOnly)
+{
+	New-Item -Path "./$FileName" -ItemType File -Force
+	$importing_header_file_content | Set-Content -Path "./$FileName"
+}
