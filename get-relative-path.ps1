@@ -10,4 +10,5 @@ $ErrorActionPreference = "Stop"
 $BasePath = $BasePath.Replace("\", "/").Replace("//", "/")
 $Path = $Path.Replace("\", "/").Replace("//", "/")
 $relative_path = [System.IO.Path]::GetRelativePath($BasePath, $Path)
+$relative_path = $relative_path.Replace("\", "/").Replace("//", "/")
 return $relative_path

@@ -26,9 +26,8 @@ foreach ($header_file in $header_files)
 	{
 		# 保持目录树。即 include 指令内的文件带有路径，相对于 $base_path。
 		$full_path = $header_file.FullName
-		$relative_ptah = get-relative-path.ps1 -BasePath $base_path -Path $full_path
-		$relative_ptah = $relative_ptah.Replace("\", "/").Replace("//", "/")
-		$importing_header_file_content += "#include<$relative_ptah>`n"
+		$relative_path = get-relative-path.ps1 -BasePath $base_path -Path $full_path
+		$importing_header_file_content += "#include<$relative_path>`n"
 	}
 }
 
