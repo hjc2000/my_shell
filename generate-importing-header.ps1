@@ -1,5 +1,6 @@
 param (
-	[string]$FileName = "include_all.h"
+	[string]$FileName = "include_all.h",
+	[switch]$DoNotHoldTree
 )
 $ErrorActionPreference = "Stop"
 
@@ -13,11 +14,21 @@ $header_files = Get-ChildItem -Path "./*.h" -File -Recurse
 $importing_header_file_content = ""
 foreach ($header_file in $header_files)
 {
-	$full_path = $header_file.FullName
-	$relative_ptah = get-relative-path.ps1 -BasePath $base_path -Path $full_path
-	$relative_ptah = $relative_ptah.Replace("\", "/").Replace("//", "/")
-	$importing_header_file_content += "#include<$relative_ptah>`n"
+	if ($DoNotHoldTree)
+	{
+		$path = $header_file.Name
+		$importing_header_file_content += "#include<$path>`n"	
+	}
+	else
+	{
+		$full_path = $header_file.FullName
+		$relative_ptah = get-relative-path.ps1 -BasePath $base_path -Path $full_path
+		$relative_ptah = $relative_ptah.Replace("\", "/").Replace("//", "/")
+		$importing_header_file_content += "#include<$relative_ptah>`n"
+	}
 }
 
 New-Item -Path "./$FileName" -ItemType File -Force
-$importing_header_file_content.Trim() | Set-Content -Path "./$FileName"
+$importing_header_file_content = $importing_header_file_content.Trim()
+Write-Host $importing_header_file_content
+$importing_header_file_content | Set-Content -Path "./$FileName"
