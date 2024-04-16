@@ -20,8 +20,7 @@ $extension = [System.IO.Path]::GetExtension($file_name).TrimStart('.')
 # 确保工作区目录存在
 if (-not (Test-Path -Path $workspace_dir))
 {
-	Write-Host '$workspace_dir 指定的工作区不存在'
-	exit 1
+	throw '$workspace_dir 指定的工作区不存在'
 }
 
 # 切换到工作区
@@ -31,7 +30,7 @@ Set-Location $workspace_dir
 if (Test-Path -Path $out_dir_name)
 {
 	Write-Host "解压后的目录已经存在，不解压了。"
-	exit 0
+	return 0
 }
 
 # 解压后的目录不存在，检查压缩包是否存在
@@ -68,7 +67,6 @@ switch ($extension)
 	}
 	default
 	{
-		Write-Host '不支持的压缩格式'
-		exit 1
+		throw '不支持的压缩格式'
 	}
 }
