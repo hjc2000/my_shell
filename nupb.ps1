@@ -1,3 +1,3 @@
 nusy.ps1
-nuget.exe init ./ $NUGET
+nuget.exe init ./ $env:NUGET
 nusy.ps1
