@@ -2,7 +2,7 @@ net stop w32time
 net start w32time
 w32tm /config /syncfromflags:manual /manualpeerlist:"ntp.ntsc.ac.cn,time.windows.com" /update
 
-for ($i = 0; $i -lt 10; i++)
+for ($i = 0; $i -lt 10; $i++)
 {
 	$result = w32tm /resync
 	Write-Host $result
