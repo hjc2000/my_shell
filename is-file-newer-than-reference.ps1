@@ -10,17 +10,18 @@ param (
 	[string]$ReferenceFilePath
 )
 
-$targetFile = Get-Item -Path $TargetFilePath
-$referenceFile = Get-Item -Path $ReferenceFilePath
 
-if (-not $referenceFile.Exists)
+if (-not (Test-Path -Path $ReferenceFilePath))
 {
 	throw "参考文件不存在。"
 }
 
-if (-not $targetFile.Exists)
+if (-not (Test-Path -Path $TargetFilePath))
 {
-	return $false
+	return $true
 }
+
+$targetFile = Get-Item -Path $TargetFilePath
+$referenceFile = Get-Item -Path $ReferenceFilePath
 
 return $targetFile.LastWriteTime -gt $referenceFile.LastWriteTime
