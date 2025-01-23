@@ -1,3 +1,3 @@
 run-bash-cmd.ps1 @"
-pacman -Su --overwrite '/*'
+pacman -Syu --overwrite '/*'
 "@
