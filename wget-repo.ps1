@@ -63,7 +63,7 @@ switch ($extension)
 	}
 	"7z"
 	{
-		7z x $file_name -o$out_dir_name
+		Invoke-Expression "7z x $file_name -o${out_dir_name}"
 	}
 	"zip"
 	{
