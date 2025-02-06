@@ -38,7 +38,7 @@ if (-not (Test-Path -Path $file_name))
 {
 	# 忽略SSL/TLS证书验证
 	[System.Net.ServicePointManager]::ServerCertificateValidationCallback = { $true }
-	
+
 	Invoke-WebRequest -Uri $repo_url -OutFile $file_name
 }
 
@@ -60,6 +60,10 @@ switch ($extension)
 	"bz2"
 	{
 		tar -vjxf $file_name -C $out_dir_name
+	}
+	"7z"
+	{
+		7z x $file_name -o$out_dir_name
 	}
 	"zip"
 	{
