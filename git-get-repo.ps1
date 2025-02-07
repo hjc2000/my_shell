@@ -16,7 +16,7 @@ try
 	[string]$current_branch = git branch
 	if (-not $current_branch.Contains($branch_name))
 	{
-		throw "仓库文件夹已经存在，且分支名与 $branch_name 不符，先手动删除仓库文件夹，重新克隆。"
+		throw "仓库文件夹已经存在，且分支名与 $branch_name 不符。"
 	}
 
 	git pull
