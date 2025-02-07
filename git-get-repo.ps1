@@ -22,6 +22,7 @@ try
 	git pull
 	while ($true)
 	{
+		git submodule sync --recursive
 		git submodule update --init --recursive
 		if (-not $LASTEXITCODE)
 		{
