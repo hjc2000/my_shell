@@ -13,4 +13,4 @@ $env:USER = "huang"
 $env:MINGW_PACKAGE_PREFIX = "mingw-w64-ucrt-x86_64"
 $env:PROMPT_COMMAND = 'history -a'
 
-bash --login -himBHse
+bash -himBHse
