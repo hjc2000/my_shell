@@ -14,16 +14,19 @@ if ($IsWindows)
 	# 如果是 msys 环境
 	$env:MSYSTEM = "UCRT64"
 	$env:MSYS2_PATH_TYPE = "inherit"
-	$env:MSYSCON = "defterm"
+	$env:SHELL = "/usr/bin/bash"
 	$env:MSYSTEM_PREFIX = "/ucrt64"
 	$env:MINGW_PREFIX = "/ucrt64"
 	$env:MSYSTEM_CHOST = "x86_64-w64-mingw32"
 	$env:MSYSTEM_CARCH = "x86_64"
 	$env:CHERE_INVOKING = "enabled_from_arguments"
-	$env:MSYS2_NOSTART = "yes"
 	$env:CONTITLE = "MinGW UCRT x64"
+	$env:HOME = "/home/huang"
+	$env:USERNAME = "huang"
+	$env:USER = "huang"
+	$env:MINGW_PACKAGE_PREFIX = "mingw-w64-ucrt-x86_64"
 
-	$cmd | bash -himBHs
+	$cmd | bash --login -himBHs
 }
 else
 {
