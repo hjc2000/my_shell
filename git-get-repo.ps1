@@ -19,7 +19,15 @@ try
 		throw "仓库文件夹已经存在，且分支名与 $branch_name 不符。"
 	}
 
-	git pull
+	while ($true)
+	{
+		git pull
+		if (-not $LASTEXITCODE)
+		{
+			break
+		}
+	}
+
 	while ($true)
 	{
 		git submodule sync --recursive
