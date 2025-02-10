@@ -4,7 +4,23 @@ param (
 $ErrorActionPreference = "Stop"
 
 Write-Host "正在进行同步的目录是：$(Get-Location)"
-git pull
+while ($true)
+{
+	git pull
+	if (-not $LASTEXITCODE)
+	{
+		break
+	}
+}
+
 git add --all
 git commit -m $commit_log
-git push
+
+while ($true)
+{
+	git push
+	if (-not $LASTEXITCODE)
+	{
+		break
+	}
+}
