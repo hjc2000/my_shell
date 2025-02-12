@@ -26,7 +26,7 @@ if ($IsWindows)
 	$env:MINGW_PACKAGE_PREFIX = "mingw-w64-ucrt-x86_64"
 	$env:PROMPT_COMMAND = 'history -a'
 
-	$cmd | bash -himBHse
+	$cmd | bash -himBHs
 }
 else
 {
