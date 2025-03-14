@@ -1,9 +1,15 @@
-try-remove-items.exe --paths ".clang-format"
-create-symbol-link.ps1 -Path ".clang-format" `
-	-Target "../../../工具链配置文件/C++项目根目录配置文件/.clang-format"
+$files = @(
+	".clang-format"
+	"CMakePresets.json"
+	".gitattributes"
+)
 
-try-remove-items.exe --paths "CMakePresets.json"
-create-symbol-link.ps1 -Path "CMakePresets.json" `
-	-Target "../../../工具链配置文件/C++项目根目录配置文件/CMakePresets.json"
+foreach ($file in $files)
+{
+	try-remove-items.exe --paths $file
+
+	create-symbol-link.ps1 -Path $file `
+		-Target "../../../工具链配置文件/C++项目根目录配置文件/$file"
+}
 
 git-sync.ps1
