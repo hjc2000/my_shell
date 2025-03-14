@@ -21,7 +21,6 @@ if ($IsWindows)
 	$env:MSYSTEM_CARCH = "x86_64"
 	$env:CHERE_INVOKING = "enabled_from_arguments"
 	$env:CONTITLE = "MinGW UCRT x64"
-	$env:HOME = "/home/$env:USERNAME"
 	$env:USER = "$env:USERNAME"
 	$env:MINGW_PACKAGE_PREFIX = "mingw-w64-ucrt-x86_64"
 	$env:PROMPT_COMMAND = 'history -a'
