@@ -1,7 +1,7 @@
 $files = @(
 	".clang-format"
-	"CMakePresets.json"
 	".gitattributes"
+	"CMakePresets.json"
 )
 
 foreach ($file in $files)
