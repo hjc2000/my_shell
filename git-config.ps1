@@ -1,12 +1,12 @@
 param (
-	[switch]$global
+	[switch]$local
 )
 $ErrorActionPreference = "Stop"
 
-$global_option = ""
-if ($global)
+$global_option = "--global"
+if ($local)
 {
-	$global_option = "--global"
+	$global_option = ""
 }
 
 git config $global_option core.editor notepad
