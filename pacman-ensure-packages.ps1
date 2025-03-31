@@ -1,9 +1,9 @@
 param(
 	[Parameter(Mandatory = $true)]
-	[string[]]$RequiredPackages
+	[string[]]$packages
 )
 
-foreach ($pkg in $RequiredPackages)
+foreach ($pkg in $packages)
 {
 	Write-Output "检查包: $pkg"
 	run-bash-cmd.ps1 @"
