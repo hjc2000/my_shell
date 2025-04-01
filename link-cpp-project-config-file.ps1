@@ -1,6 +1,6 @@
 $files = @(
 	".clang-format"
-	".gitattributes"
+	# ".gitattributes"
 	"CMakePresets.json"
 	"CMakeLists.txt"
 )
