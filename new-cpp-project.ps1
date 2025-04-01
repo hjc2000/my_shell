@@ -9,6 +9,11 @@ if (Test-Path "$project_name")
 	throw "已经存在 $project_name 目录，无法创建新项目。"
 }
 
+if (-not $env:cpp_lib_build_scripts_path)
+{
+	throw "环境变量 cpp_lib_build_scripts_path 未设置，请先配置。"
+}
+
 New-Item -Path $project_name -ItemType Directory
 
 Push-Location "$project_name"
