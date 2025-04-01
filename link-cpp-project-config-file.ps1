@@ -13,6 +13,12 @@ foreach ($file in $files)
 		-Target "../../../工具链配置文件/C++项目根目录配置文件/$file"
 }
 
+if (-not (Test-Path "project.cmake"))
+{
+	New-Item -Path "project.cmake" -ItemType File
+}
+
+
 if (Test-Path ".git")
 {
 	git-sync.ps1
