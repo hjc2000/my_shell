@@ -16,9 +16,3 @@ if (-not (Test-Path "project.cmake"))
 {
 	New-Item -Path "project.cmake" -ItemType File
 }
-
-
-if (Test-Path ".git")
-{
-	git-sync.ps1
-}
