@@ -12,3 +12,8 @@ foreach ($file in $files)
 	create-symbol-link.ps1 -Path $file `
 		-Target "../../../工具链配置文件/C++项目根目录配置文件/$file"
 }
+
+if (Test-Path ".git")
+{
+	git-sync.ps1
+}
