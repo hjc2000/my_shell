@@ -14,8 +14,10 @@ if (-not $env:cpp_lib_build_scripts_path)
 	throw "环境变量 cpp_lib_build_scripts_path 未设置，请先配置。"
 }
 
+# 创建项目根目录
 New-Item -Path $project_name -ItemType Directory
 
+# 进入项目根目录开始初始化项目
 Push-Location "$project_name"
 
 try
