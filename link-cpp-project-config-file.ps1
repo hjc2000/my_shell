@@ -2,6 +2,7 @@ $files = @(
 	".clang-format"
 	".gitattributes"
 	"CMakePresets.json"
+	"CMakeLists.txt"
 )
 
 foreach ($file in $files)
@@ -11,5 +12,3 @@ foreach ($file in $files)
 	create-symbol-link.ps1 -Path $file `
 		-Target "../../../工具链配置文件/C++项目根目录配置文件/$file"
 }
-
-git-sync.ps1
