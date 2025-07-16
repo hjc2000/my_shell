@@ -13,7 +13,6 @@ $is_admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIde
 
 if (-not $is_admin)
 {
-	# 如果不是管理员，则使用 runas 动词重新启动脚本
 	$arguments = "-File `"$ScriptPath`""
 
 	Start-Process pwsh.exe -ArgumentList $arguments -Verb RunAs
