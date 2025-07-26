@@ -18,7 +18,16 @@ try
 	{
 		while ($true)
 		{
-			git checkout $branch_name --force
+			git pull
+			if (-not $LASTEXITCODE)
+			{
+				break
+			}
+		}
+
+		while ($true)
+		{
+			git checkout $branch_name
 			if (-not $LASTEXITCODE)
 			{
 				break
