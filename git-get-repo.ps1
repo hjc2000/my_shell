@@ -30,8 +30,8 @@ try
 
 	while ($true)
 	{
-		git submodule sync --recursive
-		git submodule update --init --recursive
+		git submodule sync --recursive --force
+		git submodule update --init --recursive --force
 		if (-not $LASTEXITCODE)
 		{
 			break
