@@ -16,7 +16,14 @@ try
 	[string]$current_branch = git branch --show-current
 	if (($branch_name -ne "") -and ($current_branch -cne $branch_name))
 	{
-		throw "仓库文件夹已经存在，且分支名与 $branch_name 不符。"
+		while ($true)
+		{
+			git checkout $branch_name --force
+			if (-not $LASTEXITCODE)
+			{
+				break
+			}
+		}
 	}
 
 	while ($true)
@@ -30,7 +37,15 @@ try
 
 	while ($true)
 	{
-		git submodule sync --recursive --force
+		git submodule sync --recursive
+		if (-not $LASTEXITCODE)
+		{
+			break
+		}
+	}
+
+	while ($true)
+	{
 		git submodule update --init --recursive --force
 		if (-not $LASTEXITCODE)
 		{
