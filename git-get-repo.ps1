@@ -16,6 +16,8 @@ try
 	[string]$current_branch = git branch --show-current
 	if (($branch_name -ne "") -and ($current_branch -cne $branch_name))
 	{
+		git reset --hard
+
 		while ($true)
 		{
 			git pull
@@ -24,8 +26,6 @@ try
 				break
 			}
 		}
-
-		git reset --hard
 
 		while ($true)
 		{
