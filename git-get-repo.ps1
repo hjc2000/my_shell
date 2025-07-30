@@ -25,9 +25,11 @@ try
 			}
 		}
 
+		git reset --hard
+
 		while ($true)
 		{
-			git checkout $branch_name
+			git checkout --force $branch_name
 			if (-not $LASTEXITCODE)
 			{
 				break
