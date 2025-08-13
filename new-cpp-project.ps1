@@ -31,19 +31,19 @@ try
 	New-Item -Path "private_include" -ItemType Directory
 
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/C++项目根目录配置文件/.gitignore" `
-		-Destination ".gitignore"
+		-Destination ".gitignore" -Force
 
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/C++项目根目录配置文件/.gitattributes" `
-		-Destination ".gitattributes"
+		-Destination ".gitattributes" -Force
 
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/C++项目根目录配置文件/project.cmake" `
-		-Destination "project.cmake"
+		-Destination "project.cmake" -Force
 
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/vscode配置文件/.vscode" `
-		-Destination ".vscode" -Recurse
+		-Destination ".vscode" -Recurse -Force
 
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/vscode配置文件/示例文件.code-workspace" `
-		-Destination ".${project_name}.code-workspace"
+		-Destination ".${project_name}.code-workspace" -Force
 
 }
 finally
