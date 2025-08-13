@@ -12,8 +12,3 @@ foreach ($file in $files)
 		-Path $file `
 		-Target "../../../工具链配置文件/C++项目根目录配置文件/$file"
 }
-
-if (-not (Test-Path "project.cmake"))
-{
-	New-Item -Path "project.cmake" -ItemType File
-}

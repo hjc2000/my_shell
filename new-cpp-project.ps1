@@ -36,6 +36,9 @@ try
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/C++项目根目录配置文件/.gitattributes" `
 		-Destination ".gitattributes"
 
+	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/C++项目根目录配置文件/project.cmake" `
+		-Destination "project.cmake"
+
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/vscode配置文件/.vscode" `
 		-Destination ".vscode" -Recurse
 
