@@ -29,6 +29,8 @@ try
 	New-Item -Path "src" -ItemType Directory
 	New-Item -Path "private_src" -ItemType Directory
 	New-Item -Path "private_include" -ItemType Directory
+	New-Item -Path "test" -ItemType Directory
+	New-Item -Path "test/$project_name/test" -ItemType Directory -Force
 
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/C++项目根目录配置文件/.gitignore" `
 		-Destination ".gitignore" -Force
@@ -44,6 +46,9 @@ try
 
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/vscode配置文件/示例文件.code-workspace" `
 		-Destination ".${project_name}.code-workspace" -Force
+
+	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/main.cpp" `
+		-Destination "test/main.cpp" -Force
 
 }
 finally
