@@ -26,9 +26,11 @@ try
 	link-cpp-project-config-file.ps1
 
 	New-Item -Path "include" -ItemType Directory
+	New-Item -Path "include/$project_name" -ItemType Directory -Force
 	New-Item -Path "src" -ItemType Directory
 	New-Item -Path "private_src" -ItemType Directory
 	New-Item -Path "private_include" -ItemType Directory
+	New-Item -Path "private_include/$project_name" -ItemType Directory -Force
 	New-Item -Path "test" -ItemType Directory
 	New-Item -Path "test/$project_name/test" -ItemType Directory -Force
 
