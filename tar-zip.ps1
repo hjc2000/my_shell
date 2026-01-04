@@ -22,6 +22,7 @@ if ($IsWindows)
 	/usr/bin/tar -cf "${last_path}.tar" "$Path"
 	$Zip "./${last_path}.tar"
 "@
+
 }
 else
 {
