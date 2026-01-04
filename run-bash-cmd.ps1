@@ -35,4 +35,4 @@ else
 "@ | bash -norce
 }
 
-return $LASTEXITCODE
+exit $LASTEXITCODE
