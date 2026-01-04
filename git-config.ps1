@@ -13,6 +13,8 @@ if ($local)
 # 设置默认分支名为 main.
 git config --global init.defaultBranch main
 
+
+
 if ($IsWindows)
 {
 	git config $global_option core.editor notepad
@@ -26,6 +28,9 @@ git config $global_option core.symlinks true
 git config $global_option core.longpaths true
 git config $global_option core.autocrlf false
 git config $global_option core.ignorecase false
+
+
+
 
 # 远程分支删除后，git 分支列表里还会显示远程有该分支，也就是不会从远程仓库重新
 # 获取分支列表更新本地的缓存信息。
