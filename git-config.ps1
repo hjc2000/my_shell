@@ -4,6 +4,7 @@ param (
 $ErrorActionPreference = "Stop"
 
 $global_option = "--global"
+
 if ($local)
 {
 	$global_option = ""
