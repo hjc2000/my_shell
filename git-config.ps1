@@ -14,6 +14,7 @@ if ($local)
 git config --global init.defaultBranch main
 
 
+# region core
 
 if ($IsWindows)
 {
@@ -28,6 +29,8 @@ git config $global_option core.symlinks true
 git config $global_option core.longpaths true
 git config $global_option core.autocrlf false
 git config $global_option core.ignorecase false
+
+# endregion
 
 
 
