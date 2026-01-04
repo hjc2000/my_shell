@@ -30,7 +30,7 @@ Set-Location $workspace_dir
 if (Test-Path -Path $out_dir_name)
 {
 	Write-Host "解压后的目录已经存在，不解压了。"
-	return 0
+	exit 0
 }
 
 # 解压后的目录不存在，检查压缩包是否存在

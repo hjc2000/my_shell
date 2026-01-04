@@ -18,6 +18,7 @@ foreach ($pkg in $packages)
 		run-bash-cmd.ps1 @"
 		pacman -S $pkg --noconfirm --overwrite '*'
 "@
+
 	}
 	else
 	{

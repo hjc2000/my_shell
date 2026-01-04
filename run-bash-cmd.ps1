@@ -33,6 +33,7 @@ else
 	export PATH=$env:PATH
 	$cmd
 "@ | bash -norce
+
 }
 
 exit $LASTEXITCODE

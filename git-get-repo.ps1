@@ -64,7 +64,7 @@ try
 		}
 	}
 
-	return 0
+	exit 0
 }
 finally
 {
