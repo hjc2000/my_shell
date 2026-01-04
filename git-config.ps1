@@ -13,7 +13,15 @@ if ($local)
 # 设置默认分支名为 main.
 git config --global init.defaultBranch main
 
-git config $global_option core.editor notepad
+if ($IsWindows)
+{
+	git config $global_option core.editor notepad
+}
+else
+{
+	git config $global_option core.editor vim
+}
+
 git config $global_option core.symlinks true
 git config $global_option core.longpaths true
 git config $global_option core.autocrlf false
