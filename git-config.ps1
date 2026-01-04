@@ -9,6 +9,9 @@ if ($local)
 	$global_option = ""
 }
 
+# 设置默认分支名为 main.
+git config --global init.defaultBranch main
+
 git config $global_option core.editor notepad
 git config $global_option core.symlinks true
 git config $global_option core.longpaths true
