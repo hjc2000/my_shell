@@ -4,6 +4,7 @@ param (
 $ErrorActionPreference = "Stop"
 
 Write-Host "正在进行同步的目录是：$(Get-Location)"
+
 while ($true)
 {
 	git pull
