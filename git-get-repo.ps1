@@ -23,14 +23,7 @@ try
 		# 并且传入的 $branch_name 不等于 git 实际检查到的当前分支名。
 		git reset --hard
 
-		while ($true)
-		{
-			git pull
-			if (-not $LASTEXITCODE)
-			{
-				break
-			}
-		}
+		git-pull.ps1
 
 		while ($true)
 		{
@@ -42,14 +35,7 @@ try
 		}
 	}
 
-	while ($true)
-	{
-		git pull
-		if (-not $LASTEXITCODE)
-		{
-			break
-		}
-	}
+	git-pull.ps1
 
 	while ($true)
 	{
