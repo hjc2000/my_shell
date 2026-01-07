@@ -16,6 +16,7 @@ try
 	# 本脚本不具备签出到分支的能力。因为带有子模块时，签出到分支非常麻烦。
 	[string]$current_branch = git branch --show-current
 
+	# -cne 是大小写不敏感的 “不等” 比较运算符。
 	if (($branch_name -ne "") -and ($current_branch -cne $branch_name))
 	{
 		git reset --hard
