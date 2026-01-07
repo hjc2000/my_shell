@@ -24,13 +24,13 @@ if ($depth)
 	$git_cmd = "$git_cmd --depth $depth"
 }
 
-$repoName = git-parse-repo-name.ps1 -git_url $git_url
+$repo_name = git-parse-repo-name.ps1 -git_url $git_url
 
 while ($true)
 {
-	if (Test-Path "./$repoName")
+	if (Test-Path "./$repo_name")
 	{
-		Write-Host "$repoName 目录已存在，不克隆。"
+		Write-Host "$repo_name 目录已存在，不克隆。"
 		exit 0
 	}
 
