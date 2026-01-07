@@ -1,5 +1,6 @@
 param (
-	[string]$ScriptPath  # 可选参数：指定要运行的脚本路径
+	# 可选参数：指定要运行的脚本路径
+	[string]$ScriptPath
 )
 
 # 如果没有传入参数，则自动获取当前脚本路径
