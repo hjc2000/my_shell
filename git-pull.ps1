@@ -1,9 +1,6 @@
 
 while ($true)
 {
-	$output = git pull
-	$output = "$output"
-
 	git-verify-upstream-existence.ps1
 
 	if ($LASTEXITCODE)
@@ -17,6 +14,8 @@ while ($true)
 	{
 		throw "此分支还没有设置要跟踪的上游的远程分支。"
 	}
+
+	git pull
 
 	if (-not $LASTEXITCODE)
 	{
