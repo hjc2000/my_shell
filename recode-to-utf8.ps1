@@ -13,7 +13,7 @@ function TryChangeCode
 		[Parameter(Mandatory = $true)]
 		$file_path
 	)
-	
+
 	# 遍历编码列表，尝试将源文件当作该编码。
 	foreach ($code in $code_list)
 	{
@@ -30,6 +30,7 @@ function TryChangeCode
 }
 
 $file_list = Get-ChildItem -Path $input_file_path -Recurse:$Recurse -File
+
 foreach ($file in $file_list)
 {
 	$code_list = @(
