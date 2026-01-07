@@ -2,7 +2,7 @@
 while ($true)
 {
 	$output = git pull
-	$output = $output.ToString()
+	$output = "$output"
 
 	if ($output.Contains("but no such ref was fetched"))
 	{
