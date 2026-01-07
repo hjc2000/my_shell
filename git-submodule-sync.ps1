@@ -18,6 +18,6 @@ while ($true)
 
 	if (-not $LASTEXITCODE)
 	{
-		break
+		exit 0
 	}
 }
