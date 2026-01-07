@@ -36,16 +36,7 @@ try
 	}
 
 	git-pull.ps1
-
-	while ($true)
-	{
-		git submodule update --init --recursive --force
-		if (-not $LASTEXITCODE)
-		{
-			break
-		}
-	}
-
+	git-submodule-update.ps1
 	git-submodule-sync.ps1
 	exit 0
 }
