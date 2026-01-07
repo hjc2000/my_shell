@@ -9,11 +9,4 @@ git-pull.ps1
 git add --all
 git commit -m $commit_log
 
-while ($true)
-{
-	git push
-	if (-not $LASTEXITCODE)
-	{
-		break
-	}
-}
+git-push.ps1
