@@ -19,6 +19,8 @@ try
 	# -cne 是大小写不敏感的 “不等” 比较运算符。
 	if (($branch_name -ne "") -and ($current_branch -cne $branch_name))
 	{
+		# 本脚本调用者传入了 $branch_name 参数，且不等于空字符串，
+		# 并且传入的 $branch_name 不等于 git 实际检查到的当前分支名。
 		git reset --hard
 
 		while ($true)
