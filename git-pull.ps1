@@ -11,7 +11,9 @@ while ($true)
 		throw "此分支还没有设置要跟踪的上游的远程分支。"
 	}
 
-	if ($output.Contains("but no such ref was fetched"))
+	git-verify-upstream-existence.ps1
+
+	if ($LASTEXITCODE)
 	{
 		throw "远程仓库不存在当前的分支，无法拉取。"
 	}
