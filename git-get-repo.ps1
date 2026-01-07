@@ -39,7 +39,7 @@ try
 
 	while ($true)
 	{
-		git submodule sync --recursive
+		git submodule update --init --recursive --force
 		if (-not $LASTEXITCODE)
 		{
 			break
@@ -48,7 +48,7 @@ try
 
 	while ($true)
 	{
-		git submodule update --init --recursive --force
+		git submodule sync --recursive
 		if (-not $LASTEXITCODE)
 		{
 			break
