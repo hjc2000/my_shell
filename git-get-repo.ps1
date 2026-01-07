@@ -46,15 +46,7 @@ try
 		}
 	}
 
-	while ($true)
-	{
-		git submodule sync --recursive
-		if (-not $LASTEXITCODE)
-		{
-			break
-		}
-	}
-
+	git-submodule-sync.ps1
 	exit 0
 }
 finally
