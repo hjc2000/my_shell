@@ -24,15 +24,7 @@ try
 		git reset --hard
 
 		git-pull.ps1
-
-		while ($true)
-		{
-			git checkout --force $branch_name
-			if (-not $LASTEXITCODE)
-			{
-				break
-			}
-		}
+		git-checkout.ps1
 	}
 
 	git-pull.ps1
