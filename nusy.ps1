@@ -1,3 +1,10 @@
 Push-Location $env:NUGET
-git-sync.ps1
-Pop-Location
+
+try
+{
+	git-sync.ps1
+}
+finally
+{
+	Pop-Location
+}
