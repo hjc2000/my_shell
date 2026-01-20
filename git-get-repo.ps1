@@ -24,7 +24,7 @@ try
 		git reset --hard
 
 		git-pull.ps1
-		git-checkout.ps1
+		git-checkout.ps1 -branch_name $branch_name
 	}
 
 	git-pull.ps1
