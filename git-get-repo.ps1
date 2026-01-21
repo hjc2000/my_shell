@@ -32,6 +32,13 @@ try
 	git-submodule-sync.ps1
 	exit 0
 }
+catch
+{
+	throw @"
+	$(get-script-position.ps1)
+	$($PSItem.Exception.Message)
+"@
+}
 finally
 {
 	Pop-Location

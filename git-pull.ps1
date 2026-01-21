@@ -5,7 +5,10 @@ while ($true)
 
 	if ($LASTEXITCODE)
 	{
-		throw "远程仓库不存在当前的分支，无法拉取。"
+		throw @"
+		$(get-script-position.ps1)
+		远程仓库不存在当前的分支，无法拉取。
+"@
 	}
 
 	git pull
