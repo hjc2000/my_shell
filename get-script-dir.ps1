@@ -1,5 +1,6 @@
 $path = $MyInvocation.ScriptName
+$path = Split-Path -Path $path -Parent
 $path = "$path"
 $path = $path.Replace("\", "/")
 
-return "文件：$path 行号：$($MyInvocation.ScriptLineNumber) >>"
+return $path

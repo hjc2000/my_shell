@@ -1,1 +1,5 @@
-return $MyInvocation.ScriptName
+$path = $MyInvocation.ScriptName
+$path = "$path"
+$path = $path.Replace("\", "/")
+
+return $path
