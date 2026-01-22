@@ -1,18 +1,35 @@
 
-while ($true)
+$ErrorActionPreference = "Stop"
+Push-Location
+
+try
 {
-	git-verify-upstream-existence.ps1
-
-	if ($LASTEXITCODE)
+	while ($true)
 	{
-		throw "远程仓库不存在当前的分支，无法推送。"
-	}
+		git-verify-upstream-existence.ps1
 
-	git push
+		if ($LASTEXITCODE)
+		{
+			throw "远程仓库不存在当前的分支，无法推送。"
+		}
 
-	if (-not $LASTEXITCODE)
-	{
-		# 拉取成功
-		exit 0
+		git push
+
+		if (-not $LASTEXITCODE)
+		{
+			# 拉取成功
+			exit 0
+		}
 	}
+}
+catch
+{
+	throw "
+		$(get-script-position.ps1)
+		$(${PSItem}.Exception.Message)
+	"
+}
+finally
+{
+	Pop-Location
 }

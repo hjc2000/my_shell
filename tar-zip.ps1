@@ -3,29 +3,45 @@ param (
 	[string]$Path,	# 要被打包压缩的目录
 	[string]$Zip = "gzip"
 )
+
 $ErrorActionPreference = "Stop"
+Push-Location
 
-if (-not (Test-Path $Path))
+try
 {
-	throw "不存在 $Path"
-}
+	if (-not (Test-Path $Path))
+	{
+		throw "不存在 $Path"
+	}
 
-$Path = $Path.Replace('\', '/')
-$Path = $Path.Replace("//", '/')
-$split_options = [System.StringSplitOptions]::TrimEntries
-$split_options = $split_options -bor [System.StringSplitOptions]::RemoveEmptyEntries
-$last_path = $Path.Split('/', $split_options)[-1]
+	$Path = $Path.Replace('\', '/')
+	$Path = $Path.Replace("//", '/')
+	$split_options = [System.StringSplitOptions]::TrimEntries
+	$split_options = $split_options -bor [System.StringSplitOptions]::RemoveEmptyEntries
+	$last_path = $Path.Split('/', $split_options)[-1]
 
-if ($IsWindows)
-{
-	run-bash-cmd.ps1 @"
+	if ($IsWindows)
+	{
+		run-bash-cmd.ps1 @"
 	/usr/bin/tar -cf "${last_path}.tar" "$Path"
 	$Zip "./${last_path}.tar"
 "@
 
+	}
+	else
+	{
+		tar -cf "${last_path}.tar" "$Path"
+		& $Zip "./${last_path}.tar"
+	}
 }
-else
+catch
 {
-	tar -cf "${last_path}.tar" "$Path"
-	& $Zip "./${last_path}.tar"
+	throw "
+		$(get-script-position.ps1)
+		$(${PSItem}.Exception.Message)
+	"
+}
+finally
+{
+	Pop-Location
 }

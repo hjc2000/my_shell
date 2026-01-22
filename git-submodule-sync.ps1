@@ -12,12 +12,29 @@
 # 就可以把子仓库的 origin 远程仓库 URL 设置为父仓库的 .gitmodules 文件记录的
 # http://gitee.com/lib/lib.git
 
-while ($true)
-{
-	git submodule sync --recursive
+$ErrorActionPreference = "Stop"
+Push-Location
 
-	if (-not $LASTEXITCODE)
+try
+{
+	while ($true)
 	{
-		exit 0
+		git submodule sync --recursive
+
+		if (-not $LASTEXITCODE)
+		{
+			exit 0
+		}
 	}
+}
+catch
+{
+	throw "
+		$(get-script-position.ps1)
+		$(${PSItem}.Exception.Message)
+	"
+}
+finally
+{
+	Pop-Location
 }

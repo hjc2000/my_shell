@@ -14,12 +14,29 @@
 # git submodule update --init --recursive --force
 # 后都会是某个特定的历史状态。
 
-while ($true)
-{
-	git submodule update --init --recursive --force
+$ErrorActionPreference = "Stop"
+Push-Location
 
-	if (-not $LASTEXITCODE)
+try
+{
+	while ($true)
 	{
-		exit 0
+		git submodule update --init --recursive --force
+
+		if (-not $LASTEXITCODE)
+		{
+			exit 0
+		}
 	}
+}
+catch
+{
+	throw "
+		$(get-script-position.ps1)
+		$(${PSItem}.Exception.Message)
+	"
+}
+finally
+{
+	Pop-Location
 }

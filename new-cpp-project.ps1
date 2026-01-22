@@ -2,26 +2,28 @@ param (
 	[Parameter(Mandatory = $true)]
 	[string]$project_name
 )
+
 $ErrorActionPreference = "Stop"
-
-if (Test-Path "$project_name")
-{
-	throw "已经存在 $project_name 目录，无法创建新项目。"
-}
-
-if (-not $env:cpp_lib_build_scripts_path)
-{
-	throw "环境变量 cpp_lib_build_scripts_path 未设置，请先配置。"
-}
-
-# 创建项目根目录
-New-Item -Path $project_name -ItemType Directory
-
-# 进入项目根目录开始初始化项目
-Push-Location "$project_name"
+Push-Location
 
 try
 {
+	if (Test-Path "$project_name")
+	{
+		throw "已经存在 $project_name 目录，无法创建新项目。"
+	}
+
+	if (-not $env:cpp_lib_build_scripts_path)
+	{
+		throw "环境变量 cpp_lib_build_scripts_path 未设置，请先配置。"
+	}
+
+	# 创建项目根目录
+	New-Item -Path $project_name -ItemType Directory
+
+	# 进入项目根目录开始初始化项目
+	Set-Location "$project_name"
+
 	git init
 	link-cpp-project-config-file.ps1
 
@@ -51,7 +53,13 @@ try
 
 	Copy-Item -Path "${env:cpp_lib_build_scripts_path}/工具链配置文件/main.cpp" `
 		-Destination "test/main.cpp" -Force
-
+}
+catch
+{
+	throw "
+		$(get-script-position.ps1)
+		$(${PSItem}.Exception.Message)
+	"
 }
 finally
 {

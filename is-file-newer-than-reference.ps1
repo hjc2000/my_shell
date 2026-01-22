@@ -10,6 +10,23 @@ param (
 	[string]$ReferenceFilePath
 )
 
-$targetFile = Get-Item -Path $TargetFilePath
-$referenceFile = Get-Item -Path $ReferenceFilePath
-return $targetFile.LastWriteTime -gt $referenceFile.LastWriteTime
+$ErrorActionPreference = "Stop"
+Push-Location
+
+try
+{
+	$targetFile = Get-Item -Path $TargetFilePath
+	$referenceFile = Get-Item -Path $ReferenceFilePath
+	return $targetFile.LastWriteTime -gt $referenceFile.LastWriteTime
+}
+catch
+{
+	throw "
+		$(get-script-position.ps1)
+		$(${PSItem}.Exception.Message)
+	"
+}
+finally
+{
+	Pop-Location
+}
