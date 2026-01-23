@@ -10,9 +10,11 @@ try
 
 		if ($LASTEXITCODE)
 		{
+			[string]$current_branch = git branch --show-current
+
 			throw "
 				$(get-script-position.ps1)
-				远程仓库不存在当前的分支，无法拉取。
+				远程仓库不存在 `"${current_branch}`" 分支，无法拉取。
 			"
 		}
 
